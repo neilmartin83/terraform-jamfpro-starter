@@ -35,7 +35,7 @@ resource "jamfpro_icon" "icons" {
 
 resource "jamfpro_mobile_device_application" "jamf_self_service" {
   name                                   = "${local.self_service_app.track_name} (Managed By Terraform)"
-  display_name                           = "${local.self_service_app.track_name} - (Managed By Terraform)"
+  display_name                           = "${local.self_service_app.track_name} (Managed By Terraform)"
   bundle_id                              = local.self_service_app.bundle_id
   version                                = local.self_service_app.version
   internal_app                           = false
