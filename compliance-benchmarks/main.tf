@@ -42,7 +42,7 @@ resource "jamfplatform_cbengine_benchmark" "cis_lvl1_all" {
     }
   ]
   target_device_group = data.jamfpro_group.smart_group_models["Desktops"].group_platform_id
-  enforcement_mode    = "MONITOR_AND_ENFORCE"
+  enforcement_mode    = "MONITOR"
 }
 
 resource "jamfplatform_cbengine_benchmark" "cis_lvl2_all" {
@@ -62,5 +62,5 @@ resource "jamfplatform_cbengine_benchmark" "cis_lvl2_all" {
     }
   ]
   target_device_group = data.jamfpro_group.smart_group_models["Laptops"].group_platform_id
-  enforcement_mode    = "MONITOR_AND_ENFORCE"
+  enforcement_mode    = "MONITOR"
 }
