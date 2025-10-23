@@ -29,6 +29,11 @@ module "common_policies" {
   smart_group_model_ids = module.common_smart_computer_groups.smart_group_model_ids
 }
 
+module "compliance_benchmarks" {
+  source                = "./compliance-benchmarks"
+  smart_group_model_ids = module.common_smart_computer_groups.smart_group_model_ids
+}
+
 module "blueprints" {
   source                = "./blueprints"
   smart_group_model_ids = module.common_smart_computer_groups.smart_group_model_ids
