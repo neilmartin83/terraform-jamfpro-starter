@@ -11,6 +11,10 @@ terraform {
   }
 }
 
+module "common_settings" {
+  source = "./common-settings"
+}
+
 module "common_categories" {
   source = "./common-categories"
 }
