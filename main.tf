@@ -38,3 +38,9 @@ module "blueprints" {
   source                = "./blueprints"
   smart_group_model_ids = module.common_smart_computer_groups.smart_group_model_ids
 }
+
+module "app_macos_microsoft_company_portal" {
+  source                = "./app-macos-microsoft-company-portal"
+  category_ids          = module.common_categories.jamfpro_category_ids
+  smart_group_model_ids = module.common_smart_computer_groups.smart_group_model_ids
+}
