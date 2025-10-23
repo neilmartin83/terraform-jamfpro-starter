@@ -44,3 +44,14 @@ module "app_macos_microsoft_company_portal" {
   category_ids          = module.common_categories.jamfpro_category_ids
   smart_group_model_ids = module.common_smart_computer_groups.smart_group_model_ids
 }
+
+module "settings_volumepurchasinglocations" {
+  source                          = "./settings-volume-purchasing-locations"
+  volume_purchasing_service_token = var.volume_purchasing_service_token
+}
+
+module "app_ios_jamf_self_service" {
+  source                          = "./app-ios-jamf-self-service"
+  category_ids                    = module.common_categories.jamfpro_category_ids
+  volume_purchasing_location_data = local.volume_purchasing_location_data
+}

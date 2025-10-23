@@ -51,3 +51,9 @@ variable "jamfpro_client_secret" {
   sensitive   = true
   default     = ""
 }
+
+variable "volume_purchasing_service_token" {
+  type        = string
+  description = "Base64 encoded Volume Purchasing Service Token content (cat /path/to/token | pbcopy). If not provided, no Volume Purchasing Location will be created."
+  default     = null
+}
