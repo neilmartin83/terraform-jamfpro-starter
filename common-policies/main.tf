@@ -16,7 +16,7 @@ resource "jamfpro_policy" "update_jsde" {
   scope {
     all_computers = false
     computer_group_ids = [
-      var.smart_group_model_ids["Laptops"]
+      var.smart_group_model_ids["Desktops"]
     ]
   }
   payloads {
