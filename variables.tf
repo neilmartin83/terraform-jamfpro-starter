@@ -52,8 +52,14 @@ variable "jamfpro_client_secret" {
   default     = ""
 }
 
+variable "automated_device_enrollment_token" {
+  type        = string
+  description = "Automated Device Enrollment Token content (cat /path/to/token | pbcopy). If not provided, no Automated Device Enrollment will be created."
+  default     = null
+}
+
 variable "volume_purchasing_service_token" {
   type        = string
-  description = "Base64 encoded Volume Purchasing Service Token content (cat /path/to/token | pbcopy). If not provided, no Volume Purchasing Location will be created."
+  description = "Volume Purchasing Service Token content (cat /path/to/token | pbcopy). If not provided, no Volume Purchasing Location will be created."
   default     = null
 }

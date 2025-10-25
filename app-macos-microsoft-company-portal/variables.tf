@@ -1,9 +1,0 @@
-variable "category_ids" {
-  description = "Map of category keys to Jamf Pro category names."
-  type        = map(string)
-}
-
-variable "smart_group_model_ids" {
-  description = "Map of smart group model keys to Jamf Pro smart computer group names."
-  type        = map(string)
-}

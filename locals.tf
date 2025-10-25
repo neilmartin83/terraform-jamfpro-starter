@@ -1,5 +1,5 @@
 locals {
-  volume_purchasing_location_data = module.settings_volumepurchasinglocations.volume_purchasing_location_data != null ? module.settings_volumepurchasinglocations.volume_purchasing_location_data : {
+  volume_purchasing_location_data = module.settings.volume_purchasing_location_data != null ? module.settings.volume_purchasing_location_data : {
     id                                        = ""
     name                                      = ""
     apple_id                                  = ""
