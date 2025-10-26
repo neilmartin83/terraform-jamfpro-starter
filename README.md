@@ -705,7 +705,7 @@ Within your `jamf-yourcompany` project, [create a workspace](https://developer.h
 
 ##### 4. Configure Environment-Specific Variables
 
-In each workspace, set variables for that environment:
+In each workspace, [set variables](https://developer.hashicorp.com/terraform/cloud-docs/variables/managing-variables#workspace-specific-variables) for that environment:
 
 **Terraform Variables** (set per workspace):
 
@@ -723,11 +723,11 @@ In each workspace, set variables for that environment:
 **⚠️ Important Notes**:
 
 - **Mark all credentials and tokens as "Sensitive"** in HCP Terraform to prevent exposure in logs
-- **ADE Tokens**: Each environment should have its own ADE server token from Apple Business Manager
-  - Download tokens from ABM and base64 encode them before adding to HCP Terraform
-- **VPP Tokens**: Each environment should have its own VPP location token from Apple Business Manager
-  - Download tokens from ABM and base64 encode them before adding to HCP Terraform
-- **Jamf Platform Credentials**: Can be shared across environments (same organization) or separate per environment
+- **ADE Tokens**: Each environment should have its own ADE server token from Apple Business or School Manager
+  - Download tokens from AxM and use `cat /path/to/token.p7b | pbcopy` to copy the file contents to the clipboard
+- **VPP Tokens**: Each environment should have its own VPP location token from Apple Business or School Manager
+  - Download tokens from AxM and use `cat /path/to/token.vpptoken | pbcopy` to copy the file contents to the clipboard
+- **Jamf Platform Credentials**: Must be unique per environment (different instances)
 - **Jamf Pro Credentials**: Must be unique per environment (different instances)
 
 **Environment Variables** (optional):
@@ -739,7 +739,7 @@ In each workspace, set variables for that environment:
 **Speculative Plans** (on Pull Requests):
 
 - Enabled on all workspaces
-- Shows plan results in PR comments
+- Shows plan results in PR status check
 - Helps reviewers understand impact
 
 **Auto-Apply Settings**:
@@ -748,7 +748,9 @@ In each workspace, set variables for that environment:
 - **Staging**: Manual approval required
 - **Production**: Manual approval + additional review required
 
-##### 6. Configure Branch Protection**: It's suggested to create [branch rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository) to enforce code review and automated checks
+##### 6. Configure Branch Protection**
+
+It's suggested to create [branch rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository) to enforce code review and automated checks
 
 You'll need **three separate rulesets** (one per branch) since each requires different Terraform Cloud workspace status checks.
 
