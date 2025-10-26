@@ -591,14 +591,14 @@ This guide demonstrates a **three-tier approach** (dev → staging → productio
 GitHub Repository (Branches)          HCP Terraform (Workspaces)          Jamf Pro Instances
 ─────────────────────────────         ──────────────────────────          ───────────────────
 
-    dev branch                   →    jamf-pretendco-dev          →     pretendcodev.jamfcloud.com
+    dev branch                   →    jamf-yourcompany-dev          →     yourcompanydev.jamfcloud.com
        ↓ (PR)                                    ↓
-  staging branch                 →  jamf-pretendco-staging        →   pretendcostage.jamfcloud.com
+  staging branch                 →  jamf-yourcompany-staging        →   yourcompanystage.jamfcloud.com
        ↓ (PR)                                    ↓
-    main branch                  → jamf-pretendco-production      →    pretendco.jamfcloud.com
+    main branch                  → jamf-yourcompany-production      →    yourcompany.jamfcloud.com
 ```
 
-**🔑 Key Principle**: Dev and staging instances should **mirror production** as closely as possible. They exist to test changes before production deployment, not to maintain different configurations. The only differences should be:
+Dev and staging instances should **mirror production** as closely as possible. They exist to test changes before production deployment, not to maintain different configurations. The only differences should be:
 
 - Credentials/API keys (unique and instance-specific)
 - ADE and VPP tokens (unique and instance-specific)
@@ -618,7 +618,7 @@ GitHub Repository (Branches)          HCP Terraform (Workspaces)          Jamf P
 
 1. Sign up at [app.terraform.io](https://app.terraform.io)
 2. Create an organization (e.g., `your-company`)
-3. [Create a project](https://developer.hashicorp.com/terraform/cloud-docs/projects/manage#create-a-project) named after your Jamf instance: `jamf-pretendco`
+3. [Create a project](https://developer.hashicorp.com/terraform/cloud-docs/projects/manage#create-a-project) named after your Jamf instance: `jamf-yourcompany`
    - This groups all related workspaces together
 4. Configure your [VCS provider](https://developer.hashicorp.com/terraform/cloud-docs/vcs) (GitHub, GitLab, etc.)
 5. [Create a variable set](https://developer.hashicorp.com/terraform/cloud-docs/variables/managing-variables#variable-sets) for API rate limiting:
@@ -674,31 +674,31 @@ git push -u origin staging
 # main branch = production baseline
 ```
 
-**⚠️ Important**: Always create dev and staging branches from main to ensure they start with the same configuration as production. This establishes the mirror principle from the start.
+> **⚠️ Important Note**: Always create dev and staging branches from main to ensure they start with the same configuration as production. This establishes the mirror principle from the start.
 
 ##### 3. Create Workspaces in Terraform Cloud
 
-Within your `jamf-pretendco` project, [create a workspace](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/create#create-a-workspace) for each environment:
+Within your `jamf-yourcompany` project, [create a workspace](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/create#create-a-workspace) for each environment:
 
 **Development Workspace**:
 
-- **Project**: `jamf-pretendco`
-- **Name**: `jamf-pretendco-dev`
+- **Project**: `jamf-yourcompany`
+- **Name**: `jamf-yourcompany-dev`
 - **VCS Branch**: `dev`
 - **Auto Apply**: Enabled (optional for dev)
 - **Terraform Working Directory**: `/` (root)
 
 **Staging Workspace**:
 
-- **Project**: `jamf-pretendco`
-- **Name**: `jamf-pretendco-staging`
+- **Project**: `jamf-yourcompany`
+- **Name**: `jamf-yourcompany-staging`
 - **VCS Branch**: `staging`
 - **Auto Apply**: Disabled (require manual approval)
 
 **Production Workspace**:
 
-- **Project**: `jamf-pretendco`
-- **Name**: `jamf-pretendco-production`
+- **Project**: `jamf-yourcompany`
+- **Name**: `jamf-yourcompany-production`
 - **VCS Branch**: `main`
 - **Auto Apply**: Disabled (require manual approval)
 
@@ -710,7 +710,7 @@ In each workspace, set variables for that environment:
 
 | Variable | Dev Value | Staging Value | Production Value |
 |----------|-----------|---------------|------------------|
-| `jamfpro_instance_fqdn` | `https://pretendcodev.jamfcloud.com` | `https://pretendcostage.jamfcloud.com` | `https://pretendco.jamfcloud.com` |
+| `jamfpro_instance_fqdn` | `https://yourcompanydev.jamfcloud.com` | `https://yourcompanystage.jamfcloud.com` | `https://yourcompany.jamfcloud.com` |
 | `jamfpro_client_id` | `dev-client-id` | `staging-client-id` | `prod-client-id` |
 | `jamfpro_client_secret` | `dev-secret` (sensitive) | `staging-secret` (sensitive) | `prod-secret` (sensitive) |
 | `jamfplatform_base_url` | `https://us.apigw.jamf.com` | `https://us.apigw.jamf.com` | `https://us.apigw.jamf.com` |
@@ -768,7 +768,7 @@ You'll need **three separate rulesets** (one per branch) since each requires dif
        - ✅ Require branches to be up to date before merging
        - **Add Status checks that are required**:
          - `terraform-checks` (from GitHub Actions workflow)
-         - `Terraform Cloud/your-org-name/jamf-pretendco-dev` (value will be specific from your Terraform Cloud instance)
+         - `Terraform Cloud/your-org-name/jamf-yourcompany-dev` (value will be specific from your Terraform Cloud instance)
 
 **Staging Branch Ruleset**:
 
@@ -786,7 +786,7 @@ You'll need **three separate rulesets** (one per branch) since each requires dif
        - ✅ Require branches to be up to date before merging
        - **Add Status checks that are required**:
          - `terraform-checks` (from GitHub Actions workflow)
-         - `Terraform Cloud/your-org-name/jamf-pretendco-staging` (value will be specific from your Terraform Cloud instance)
+         - `Terraform Cloud/your-org-name/jamf-yourcompany-staging` (value will be specific from your Terraform Cloud instance)
 
 **Production/Main Branch Ruleset**:
 
@@ -804,7 +804,7 @@ You'll need **three separate rulesets** (one per branch) since each requires dif
        - ✅ Require branches to be up to date before merging
        - **Add Status checks that are required**:
          - `terraform-checks` (from GitHub Actions workflow)
-         - `Terraform Cloud/your-org-name/jamf-pretendco-production` (value will be specific from your Terraform Cloud instance)
+         - `Terraform Cloud/your-org-name/jamf-yourcompany-production` (value will be specific from your Terraform Cloud instance)
 
 > **💡 Note**: The Terraform Cloud status checks will appear in the list after your first PR triggers a speculative plan. You may need to create an initial PR to each branch, let it run, then add the status check requirement retroactively.
 
@@ -864,10 +864,10 @@ Example: `feat: add Microsoft Teams installation policy` or `fix: correct smart 
 **What happens**:
 
 - Terraform Cloud detects commit on `dev` branch
-- Runs `terraform plan` in `jamf-pretendco-dev` workspace
+- Runs `terraform plan` in `jamf-yourcompany-dev` workspace
 - Shows what will change compared to current dev state
 - Automatically applies (if auto-apply enabled)
-- Updates `pretendcodev.jamfcloud.com` Jamf Pro instance
+- Updates `yourcompanydev.jamfcloud.com` Jamf Pro instance
 - **Dev now has production config + your new changes**
 
 ##### Step 2: Promote to Staging
@@ -879,7 +879,7 @@ gh pr create --base staging --head dev --title "feat: deploy new app policy to s
 
 **What happens**:
 
-- Terraform Cloud runs **speculative plan** on `jamf-pretendco-staging` workspace
+- Terraform Cloud runs **speculative plan** on `jamf-yourcompany-staging` workspace
 - Plan shows the diff between current staging and the proposed changes from dev
 - Plan results are linked in the PR status checks
 - Team reviews changes
@@ -887,7 +887,7 @@ gh pr create --base staging --head dev --title "feat: deploy new app policy to s
   - Staging branch now contains production config + your tested changes
   - Terraform Cloud runs plan
   - Waits for manual approval in Terraform Cloud UI
-  - Applies to `pretendcostage.jamfcloud.com` Jamf Pro instance
+  - Applies to `yourcompanystage.jamfcloud.com` Jamf Pro instance
   - **Staging now matches dev (production + new changes)**
 
 ##### Step 3: Promote to Production
@@ -899,7 +899,7 @@ gh pr create --base main --head staging --title "feat: deploy new app policy to 
 
 **What happens**:
 
-- Terraform Cloud runs **speculative plan** on `jamf-pretendco-production` workspace
+- Terraform Cloud runs **speculative plan** on `jamf-yourcompany-production` workspace
 - Plan shows exactly what will change in production (same changes tested in dev and staging)
 - Plan results appear as PR comment
 - Senior team members review
@@ -907,7 +907,7 @@ gh pr create --base main --head staging --title "feat: deploy new app policy to 
   - Main branch updated with approved changes
   - Terraform Cloud runs plan
   - Requires manual approval from authorized personnel
-  - Applies to `pretendco.jamfcloud.com` Jamf Pro instance
+  - Applies to `yourcompany.jamfcloud.com` Jamf Pro instance
   - **Production updated successfully**
   - **All environments now in sync again**
 
@@ -930,7 +930,7 @@ git push origin staging
 This ensures all environments return to a synchronized state, ready for the next change cycle.
 
 - Requires manual approval from authorized personnel
-- Applies to `pretendco.jamfcloud.com` Jamf Pro instance
+- Applies to `yourcompany.jamfcloud.com` Jamf Pro instance
 
 #### VCS Integration Benefits
 
