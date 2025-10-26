@@ -1,5 +1,5 @@
 resource "jamfpro_mobile_device_prestage_enrollment" "_1_1" {
-  display_name                                 = "Default (Managed By Terraform)"
+  display_name                                 = "Default (Managed by Terraform)"
   mandatory                                    = true
   mdm_removable                                = false
   support_phone_number                         = ""

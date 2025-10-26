@@ -1,5 +1,5 @@
 resource "jamfpro_macos_configuration_profile_plist" "security_and_privacy_laptops" {
-  name                = "Security and Privacy - Laptops (Managed By Terraform)"
+  name                = "Security and Privacy - Laptops (Managed by Terraform)"
   description         = ""
   level               = "System"
   distribution_method = "Install Automatically"
@@ -7,7 +7,7 @@ resource "jamfpro_macos_configuration_profile_plist" "security_and_privacy_lapto
   payloads            = file("${path.module}/support-files/security-and-privacy-laptops.mobileconfig")
   payload_validate    = true
   user_removable      = false
-  category_id         = var.category_ids["Global (Managed By Terraform)"]
+  category_id         = var.category_ids["Global (Managed by Terraform)"]
 
   scope {
     all_computers      = false
@@ -17,7 +17,7 @@ resource "jamfpro_macos_configuration_profile_plist" "security_and_privacy_lapto
 }
 
 resource "jamfpro_macos_configuration_profile_plist" "security_and_privacy_desktops" {
-  name                = "Security and Privacy - Desktops (Managed By Terraform)"
+  name                = "Security and Privacy - Desktops (Managed by Terraform)"
   description         = ""
   level               = "System"
   distribution_method = "Install Automatically"
@@ -25,7 +25,7 @@ resource "jamfpro_macos_configuration_profile_plist" "security_and_privacy_deskt
   payloads            = file("${path.module}/support-files/security-and-privacy-desktops.mobileconfig")
   payload_validate    = true
   user_removable      = false
-  category_id         = var.category_ids["Global (Managed By Terraform)"]
+  category_id         = var.category_ids["Global (Managed by Terraform)"]
 
   scope {
     all_computers      = false

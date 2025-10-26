@@ -54,11 +54,6 @@ module "policies" {
   computer_smart_group_model_ids = module.computer_smart_groups.model_ids
 }
 
-module "compliance_benchmarks" {
-  source                         = "./modules/compliance-benchmarks"
-  computer_smart_group_model_ids = module.computer_smart_groups.model_ids
-}
-
 # Mobile Device Modules
 module "mobile_device_prestages" {
   count                          = var.automated_device_enrollment_token != null ? 1 : 0
@@ -81,9 +76,15 @@ module "mobile_device_apps" {
   volume_purchasing_location_data = local.volume_purchasing_location_data
 }
 
-# Blueprints Module (Computers and Mobile Devices)
+# Blueprints and Compliance Benchmarks Modules 
+# Comment out or remove if not using the Jamf Platform API
 module "blueprints" {
   source                              = "./modules/blueprints"
   computer_smart_group_model_ids      = module.computer_smart_groups.model_ids
   mobile_device_smart_group_model_ids = module.mobile_device_smart_groups.model_ids
+}
+
+module "compliance_benchmarks" {
+  source                         = "./modules/compliance-benchmarks"
+  computer_smart_group_model_ids = module.computer_smart_groups.model_ids
 }

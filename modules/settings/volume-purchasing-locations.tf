@@ -1,6 +1,6 @@
 resource "jamfpro_volume_purchasing_locations" "default" {
   count                                     = var.volume_purchasing_service_token != null ? 1 : 0
-  name                                      = "Volume Purchasing Location (Managed By Terraform)"
+  name                                      = "Volume Purchasing Location (Managed by Terraform)"
   service_token                             = trimspace(var.volume_purchasing_service_token)
   automatically_populate_purchased_content  = true
   send_notification_when_no_longer_assigned = false

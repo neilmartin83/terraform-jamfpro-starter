@@ -1,5 +1,5 @@
 resource "jamfpro_macos_configuration_profile_plist" "nudge" {
-  name                = "Nudge (Managed By Terraform)"
+  name                = "Nudge (Managed by Terraform)"
   description         = ""
   level               = "System"
   distribution_method = "Install Automatically"
@@ -7,7 +7,7 @@ resource "jamfpro_macos_configuration_profile_plist" "nudge" {
   payloads            = file("${path.module}/support-files/nudge.mobileconfig")
   payload_validate    = true
   user_removable      = false
-  category_id         = var.category_ids["Applications (Managed By Terraform)"]
+  category_id         = var.category_ids["Applications (Managed by Terraform)"]
 
   scope {
     all_computers = false

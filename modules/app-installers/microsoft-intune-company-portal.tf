@@ -4,7 +4,7 @@ resource "jamfpro_app_installer" "microsoft_intune_company_portal" {
   enabled                            = true
   deployment_type                    = "INSTALL_AUTOMATICALLY"
   update_behavior                    = "AUTOMATIC"
-  category_id                        = var.category_ids["Applications (Managed By Terraform)"]
+  category_id                        = var.category_ids["Applications (Managed by Terraform)"]
   site_id                            = "-1"
   smart_group_id                     = var.computer_smart_group_model_ids["Laptops"]
   install_predefined_config_profiles = true

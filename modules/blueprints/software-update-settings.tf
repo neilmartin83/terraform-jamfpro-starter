@@ -1,6 +1,6 @@
 resource "jamfplatform_blueprints_blueprint" "software_update_settings" {
   name        = "Software Update Settings"
-  description = "Managed By Terraform"
+  description = "Managed by Terraform"
 
   device_groups = concat(
     [for group in data.jamfpro_group.computer_smart_group_models : group.group_platform_id],

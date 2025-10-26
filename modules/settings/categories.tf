@@ -1,8 +1,8 @@
 locals {
   category_names = [
-    "Global (Managed By Terraform)",
-    "Applications (Managed By Terraform)",
-    "Scripts (Managed By Terraform)"
+    "Global (Managed by Terraform)",
+    "Applications (Managed by Terraform)",
+    "Scripts (Managed by Terraform)"
   ]
 }
 

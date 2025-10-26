@@ -18,8 +18,8 @@ resource "jamfpro_package" "default" {
   for_each              = toset(local.package_names)
   package_name          = each.value
   package_file_source   = "${path.module}/support-files/${each.value}"
-  category_id           = var.category_ids["Applications (Managed By Terraform)"]
-  info                  = "Managed By Terraform"
+  category_id           = var.category_ids["Applications (Managed by Terraform)"]
+  info                  = "Managed by Terraform"
   priority              = 10
   reboot_required       = false
   fill_user_template    = false

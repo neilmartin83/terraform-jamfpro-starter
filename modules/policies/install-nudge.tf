@@ -30,7 +30,7 @@ resource "jamfpro_policy" "install_nudge" {
   enabled         = true
   trigger_checkin = true
   frequency       = "Ongoing"
-  category_id     = var.category_ids["Applications (Managed By Terraform)"]
+  category_id     = var.category_ids["Applications (Managed by Terraform)"]
   scope {
     all_computers = false
     computer_group_ids = [

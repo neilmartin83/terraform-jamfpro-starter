@@ -1,6 +1,6 @@
 resource "jamfplatform_blueprints_blueprint" "passcode_policy" {
   name        = "Passcode Policy"
-  description = "Managed By Terraform"
+  description = "Managed by Terraform"
 
   device_groups = [data.jamfpro_group.mobile_device_smart_group_models["iPhones"].group_platform_id]
 
