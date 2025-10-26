@@ -340,9 +340,51 @@ Each module contains resource files that can be customized:
    EOF
    ```
 
-## 📝 Customization Guide
+## 📝 Customizing modules for your own project
 
-### Module-Specific Suggestions
+This project demonstrates a variety of suggested practices that are used in Infrastructure as Code workflows. Adopt these practices when you extend modules for your own environment.
+
+### Understand the architecture
+
+- **Flat Module Structure**: All modules are at one level for simplicity
+- **One Resource Per File**: Makes it easy to find and modify resources
+- **Output-Based Dependencies**: Modules communicate via outputs where required (e.g. category IDs created in the `settings` module are passed to the `policies` module so Policies can use use them)
+
+### Example Practices
+
+1. **Conditional Creation**
+
+   ```hcl
+   count = var.token != null ? 1 : 0
+   ```
+
+   E.g. in `computer-prestages/default.tf`
+
+2. **Safe Output Access**
+
+   ```hcl
+   value = length(resource.name) > 0 ? resource.name[0].id : null
+   ```
+
+   E.g. in `settings/outputs.tf`
+
+3. **Template Rendering**
+
+   ```hcl
+   templatefile("path/to/template.tpl", { var = value })
+   ```
+
+   E.g. in `mobile-device-profiles/wi-fi.tf`
+
+4. **Resource Dependencies**
+
+   ```hcl
+   depends_on = [module.other]
+   ```
+
+   E.g. in `settings/volume-purchasing-locations.tf`
+
+### Module-specific Examples
 
 #### **Policies Module**
 
@@ -353,7 +395,7 @@ Each module contains resource files that can be customized:
 #### **App Installers Module**
 
 - Individual files for complex apps with custom configuration
-- Use `for_each` in a single file for standardized apps
+- Uses `for_each` in a single file for standardized apps
 - See `microsoft-office.tf` for examples
 
 #### **Mobile Device Apps Module**
@@ -361,12 +403,13 @@ Each module contains resource files that can be customized:
 - Automatically fetches app metadata from App Store
 - Downloads app icons for Self Service
 - Supports VPP assignment
+- Uses `for_each` in a single file for standardized apps
+- See `microsoft-office.tf` for examples
 
 #### **Packages Module**
 
 - Packages are uploaded from `support-files/` directory
-- Managed via `for_each` with variable list
-- Consider using external package management for production
+- Managed via `for_each` with variable list of package filenames
 
 ## 📐 Naming Conventions
 
@@ -467,48 +510,6 @@ output "csg_ids" {
   value = { for k, g in jamfpro_smart_computer_group.model : k => g.id }
 }
 ```
-
-## 🎓 Learning Suggested Practices
-
-### Understand the architecture
-
-- **Flat Module Structure**: All modules are at one level for simplicity
-- **One Resource Per File**: Makes it easy to find and modify resources
-- **Output-Based Dependencies**: Modules communicate via outputs where required (e.g. category IDs created in the `settings` module are passed to the `policies` module so Policies can use use them)
-
-### Use Key Patterns
-
-1. **Conditional Creation**
-
-   ```hcl
-   count = var.token != null ? 1 : 0
-   ```
-
-   E.g. in `computer-prestages/default.tf`
-
-2. **Safe Output Access**
-
-   ```hcl
-   value = length(resource.name) > 0 ? resource.name[0].id : null
-   ```
-
-   E.g. in `settings/outputs.tf`
-
-3. **Template Rendering**
-
-   ```hcl
-   templatefile("path/to/template.tpl", { var = value })
-   ```
-
-   E.g. in `mobile-device-profiles/wi-fi.tf`
-
-4. **Resource Dependencies**
-
-   ```hcl
-   depends_on = [module.other]
-   ```
-
-   E.g. in `settings/volume-purchasing-locations.tf`
 
 ## 📦 Deployment Workflows
 
