@@ -636,7 +636,7 @@ GitHub Repository (Branches)          HCP Terraform (Workspaces)          Jamf P
 
 Create branches for each environment:
 
-**Option A: [GitHub Desktop](<https://docs.github.com/en/desktop/making-changes-in-a-branch/managing-branches-in-github-desktop>** (Recommended for beginners)
+**Option A: [GitHub Desktop](https://docs.github.com/en/desktop/making-changes-in-a-branch/managing-branches-in-github-desktop)** (Recommended for beginners)
 
 1. Open GitHub Desktop and ensure your repository is selected
 2. Click the **Current Branch** dropdown at the top
@@ -648,7 +648,7 @@ Create branches for each environment:
 8. Click **Publish branch** to push it to GitHub
 9. Repeat steps 3-8 to create a `staging` branch (also based on `main`)
 
-**Option B: [GitHub Web Interface](<https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository>**
+**Option B: [GitHub Web Interface](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository)**
 
 1. Navigate to your repository on GitHub.com
 2. Ensure you're viewing the `main` branch (check the branch dropdown)
