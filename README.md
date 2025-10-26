@@ -358,7 +358,7 @@ This project demonstrates a variety of suggested practices that are used in Infr
    count = var.token != null ? 1 : 0
    ```
 
-   E.g. in `computer-prestages/default.tf`
+   E.g. in `computer-prestages/default.tf` - only create a Pre Stage when the ADE token is supplied
 
 2. **Safe Output Access**
 
@@ -366,7 +366,7 @@ This project demonstrates a variety of suggested practices that are used in Infr
    value = length(resource.name) > 0 ? resource.name[0].id : null
    ```
 
-   E.g. in `settings/outputs.tf`
+   E.g. in `settings/outputs.tf` - The ADE ID from Jamf Pro value is set to null if an ADE is not created (i.e. no token supplied)
 
 3. **Template Rendering**
 
@@ -374,7 +374,7 @@ This project demonstrates a variety of suggested practices that are used in Infr
    templatefile("path/to/template.tpl", { var = value })
    ```
 
-   E.g. in `mobile-device-profiles/wi-fi.tf`
+   E.g. in `mobile-device-profiles/wi-fi.tf` - the SSID and password are substituted into the configuration profile payload from local values
 
 4. **Resource Dependencies**
 
@@ -382,7 +382,7 @@ This project demonstrates a variety of suggested practices that are used in Infr
    depends_on = [module.other]
    ```
 
-   E.g. in `settings/volume-purchasing-locations.tf`
+   E.g. in `settings/volume-purchasing-locations.tf` - to allow time for licenses to sync from Apple Business/School Manager before reading them into Terraform, a delay of 2 minutes (`time_sleep` resource) is created after the Volume Purchasing Location, before licenses are read by the data source
 
 ### Module-specific Examples
 
@@ -395,7 +395,7 @@ This project demonstrates a variety of suggested practices that are used in Infr
 #### **App Installers Module**
 
 - Individual files for complex apps with custom configuration
-- Uses `for_each` in a single file for standardized apps
+- Uses `for_each` in a single file with local list of standardized apps (DRY principle)
 - See `microsoft-office.tf` for examples
 
 #### **Mobile Device Apps Module**
@@ -403,13 +403,13 @@ This project demonstrates a variety of suggested practices that are used in Infr
 - Automatically fetches app metadata from App Store
 - Downloads app icons for Self Service
 - Supports VPP assignment
-- Uses `for_each` in a single file for standardized apps
+- Uses `for_each` in a single file with local list of standardized apps (DRY principle)
 - See `microsoft-office.tf` for examples
 
 #### **Packages Module**
 
 - Packages are uploaded from `support-files/` directory
-- Managed via `for_each` with variable list of package filenames
+- Managed via `for_each` with local list of package filenames (DRY principle)
 
 ## 📐 Naming Conventions
 
