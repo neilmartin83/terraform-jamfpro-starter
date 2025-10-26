@@ -151,7 +151,7 @@ terraform plan
 terraform apply -parallelism=1
 ```
 
-## �📁 Project Structure
+## 📁 Project Structure
 
 ```
 terraform-jamfpro-starter/
@@ -177,7 +177,7 @@ terraform-jamfpro-starter/
     ├── computer-profiles/           # Computer configuration profiles
     ├── packages/                    # Packages (.pkg files)
     ├── policies/                    # Policies
-    ├── app-installers/              # App Installers (Jamf Platform)
+    ├── app-installers/              # App Installers (Jamf App Catalogue)
     │
     ├── mobile-device-prestages/     # Mobile device PreStage enrollments
     ├── mobile-device-smart-groups/  # Mobile device smart groups
