@@ -553,7 +553,8 @@ terraform apply -parallelism=1
 
 For production deployments, integrate with **HashiCorp Terraform Cloud** (HCP Terraform) using VCS (Version Control System) integration for automated, safe deployments across multiple environments.
 
-> **💰 Pricing Note**: Terraform Cloud is a paid service with a [free tier](https://www.hashicorp.com/en/pricing?tab=terraform) that includes up to 500 resources managed. For larger Jamf Pro deployments, the **Essentials** tier provides sufficient resources and features. Evaluate your resource count and team size to determine the appropriate tier.
+> **💰 Pricing Note**: [HCP Terraform](https://developer.hashicorp.com/terraform/cloud-docs) is a paid service with a [free tier](https://developer.hashicorp.com/terraform/cloud-docs/overview#free-organizations) that includes up to 500 resources managed. This is great for evaluating the service and working with a smaller Jamf Pro deployment.
+For larger Jamf Pro deployments, the **Essentials** tier likely provides sufficient resources and features. Evaluate your resource count and team size to determine the appropriate tier.
 
 #### Environment Strategy
 
