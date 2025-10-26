@@ -1,0 +1,41 @@
+name: "Terraform Checks (PR)"
+
+on:
+  pull_request:
+
+jobs:
+  terraform-checks:
+    runs-on: ubuntu-latest
+    env:
+      TF_IN_AUTOMATION: "true"
+      TF_INPUT: "false"
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - name: Setup TFLint
+        run: |
+          curl -sSL https://github.com/terraform-linters/tflint/releases/latest/download/tflint_linux_amd64.zip -o tflint.zip
+          unzip -o tflint.zip -d /usr/local/bin
+          tflint --version
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: Format Check
+        run: terraform fmt -check -recursive
+
+      - name: Run TFLint
+        run: tflint --recursive
+
+      - name: Init
+        id: init
+        run: terraform init
+
+      - name: Validate
+        run: terraform validate
