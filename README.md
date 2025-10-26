@@ -347,7 +347,7 @@ This project demonstrates a variety of suggested practices that are used in Infr
 ### Understand the architecture
 
 - **Flat Module Structure**: All modules are at one level for simplicity
-- **One Resource Per File**: Makes it easy to find and modify resources
+- **One Resource Per File**: Where appropriate, makes it easy to find and modify resources
 - **Output-Based Dependencies**: Modules communicate via outputs where required (e.g. category IDs created in the `settings` module are passed to the `policies` module so Policies can use use them)
 
 ### Example Practices
