@@ -632,7 +632,7 @@ GitHub Repository (Branches)          HCP Terraform (Workspaces)          Jamf P
 
    **Why this is needed**: Jamf Pro and Jamf Platform APIs have strict rate limiting and concurrent request handling. Setting parallelism to 1 ensures Terraform makes API calls sequentially, preventing rate limit errors and failed deployments.
 
-##### 2. Configure Branch Strategy
+##### 2. Create Branches
 
 Create branches for each environment:
 
@@ -675,22 +675,6 @@ git push -u origin staging
 ```
 
 **⚠️ Important**: Always create dev and staging branches from main to ensure they start with the same configuration as production. This establishes the mirror principle from the start.
-
-**Branch Protection**: [Create a branch ruleset](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository) to enforce code review requirements:
-
-1. In your GitHub repository, go to **Settings → Rules → Rulesets**
-2. Click **New ruleset → New branch ruleset**
-3. Configure the ruleset:
-   - **Name**: `Require Pull Request Reviews`
-   - **Enforcement status**: Active
-   - **Target branches**: Add `main`, `staging`, and `dev`
-   - **Branch protection rules**:
-     - ✅ Require a pull request before merging
-     - ✅ Require approvals: `1` (or more for production/staging)
-     - ✅ Dismiss stale pull request approvals when new commits are pushed (suggested)
-     - ✅ Require conversation resolution before merging (suggested)
-
-This ensures all changes go through peer review before being merged, reducing errors and maintaining code quality across all environments.
 
 ##### 3. Create Workspaces in Terraform Cloud
 
@@ -762,6 +746,69 @@ In each workspace, set variables for that environment:
 - **Dev**: Auto-apply on commit (fast iteration)
 - **Staging**: Manual approval required
 - **Production**: Manual approval + additional review required
+
+##### 6. Configure Branch Protection**: It's suggested to create [branch rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository) to enforce code review and automated checks
+
+You'll need **three separate rulesets** (one per branch) since each requires different Terraform Cloud workspace status checks.
+
+**Dev Branch Ruleset**:
+
+1. In your GitHub repository, go to **Settings → Rules → Rulesets**
+2. Click **New ruleset → New branch ruleset**
+3. Configure the ruleset:
+   - **Name**: `Dev Branch Protection`
+   - **Enforcement status**: Active
+   - **Target branches**: Include by pattern: `dev`
+   - **Branch protection rules**:
+     - ✅ Require a pull request before merging
+     - ✅ Require approvals: `0`
+     - ✅ Dismiss stale pull request approvals when new commits are pushed (suggested)
+     - ✅ Require conversation resolution before merging (suggested)
+     - ✅ Require status checks to pass
+       - ✅ Require branches to be up to date before merging
+       - **Add Status checks that are required**:
+         - `terraform-checks` (from GitHub Actions workflow)
+         - `Terraform Cloud/your-org-name/jamf-pretendco-dev` (value will be specific from your Terraform Cloud instance)
+
+**Staging Branch Ruleset**:
+
+1. Click **New ruleset → New branch ruleset**
+2. Configure the ruleset:
+   - **Name**: `Staging Branch Protection`
+   - **Enforcement status**: Active
+   - **Target branches**: Include by pattern: `staging`
+   - **Branch protection rules**:
+     - ✅ Require a pull request before merging
+     - ✅ Require approvals: `1` (or more for added scrutiny)
+     - ✅ Dismiss stale pull request approvals when new commits are pushed (suggested)
+     - ✅ Require conversation resolution before merging (suggested)
+     - ✅ Require status checks to pass
+       - ✅ Require branches to be up to date before merging
+       - **Add Status checks that are required**:
+         - `terraform-checks` (from GitHub Actions workflow)
+         - `Terraform Cloud/your-org-name/jamf-pretendco-staging` (value will be specific from your Terraform Cloud instance)
+
+**Production/Main Branch Ruleset**:
+
+1. Click **New ruleset → New branch ruleset**
+2. Configure the ruleset:
+   - **Name**: `Production Branch Protection`
+   - **Enforcement status**: Active
+   - **Target branches**: Include by pattern: `main`
+   - **Branch protection rules**:
+     - ✅ Require a pull request before merging
+     - ✅ Require approvals: `2` (or more for production safety)
+     - ✅ Dismiss stale pull request approvals when new commits are pushed (required)
+     - ✅ Require conversation resolution before merging (required)
+     - ✅ Require status checks to pass
+       - ✅ Require branches to be up to date before merging
+       - **Add Status checks that are required**:
+         - `terraform-checks` (from GitHub Actions workflow)
+         - `Terraform Cloud/your-org-name/jamf-pretendco-production` (value will be specific from your Terraform Cloud instance)
+
+> **💡 Note**: The Terraform Cloud status checks will appear in the list after your first PR triggers a speculative plan. You may need to create an initial PR to each branch, let it run, then add the status check requirement retroactively.
+
+This ensures changes go through peer review **and** automated validation before being merged, providing multiple layers of protection across all environments.
 
 #### Development Workflow
 
