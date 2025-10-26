@@ -814,7 +814,7 @@ This ensures changes go through peer review **and** automated validation before 
 #### Development Workflow
 
 ```mermaid
-graph LR
+graph TD
     A[Make changes locally] --> B[Commit to dev branch]
     B --> C[Terraform Cloud runs plan]
     C --> D{Auto-apply enabled?}
@@ -932,23 +932,6 @@ This ensures all environments return to a synchronized state, ready for the next
 
 - Requires manual approval from authorized personnel
 - Applies to `yourcompany.jamfcloud.com` Jamf Pro instance
-
-#### VCS Integration Benefits
-
-✅ **Automated Planning**: Every commit triggers a plan
-✅ **PR Reviews**: Team can review infrastructure changes before apply
-✅ **Automated Quality Checks**: GitHub Actions workflow validates code on every PR
-
-- **Format checking**: Ensures code follows Terraform formatting standards (`terraform fmt`)
-- **Validation**: Verifies Terraform syntax and configuration validity (`terraform validate`)
-- **Linting**: Runs TFLint to catch common errors and enforce best practices
-- Review the file `.github/workflows/terraform-checks.yml` for implementation details
-✅ **Audit Trail**: Complete history of who changed what and when
-✅ **State Management**: Centralized, secure, and locked state storage
-✅ **Collaboration**: Multiple team members can work safely
-✅ **Rollback**: Easy to revert via Git history
-✅ **Branch Protection**: Enforce approval requirements and required status checks
-✅ **Notifications**: Slack/Teams integration for deployment events
 
 ---
 
