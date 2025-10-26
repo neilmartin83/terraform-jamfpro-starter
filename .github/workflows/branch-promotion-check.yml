@@ -1,0 +1,19 @@
+name: Enforce Branch Promotion Flow
+on:
+  pull_request:
+    branches: [main, staging]
+
+jobs:
+  check-source-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR source branch
+        run: |
+          if [[ "${{ github.base_ref }}" == "main" && "${{ github.head_ref }}" != "staging" ]]; then
+            echo "Error: PRs to main must come from staging branch"
+            exit 1
+          fi
+          if [[ "${{ github.base_ref }}" == "staging" && "${{ github.head_ref }}" != "dev" ]]; then
+            echo "Error: PRs to staging must come from dev branch"
+            exit 1
+          fi
