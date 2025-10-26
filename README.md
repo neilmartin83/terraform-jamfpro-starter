@@ -612,10 +612,10 @@ GitHub Repository (Branches)          HCP Terraform (Workspaces)          Jamf P
 
 **Why this matters**:
 
-✅ **Predictable deployments** - What works in staging will work in production
-✅ **Accurate testing** - Catch issues before they reach production
-✅ **Simplified rollbacks** - Easy to revert by re-promoting from main branch
-✅ **Reduced drift** - All environments stay in sync with production
+- **Predictable deployments** - What works in staging will work in production
+- **Accurate testing** - Catch issues before they reach production
+- **Simplified rollbacks** - Easy to revert by re-promoting from main branch
+- **Reduced drift** - All environments stay in sync with production
 
 #### Setup Instructions
 
