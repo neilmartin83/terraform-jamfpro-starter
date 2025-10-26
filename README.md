@@ -510,13 +510,13 @@ output "csg_ids" {
 
    E.g. in `settings/volume-purchasing-locations.tf`
 
-## � Deployment Workflows
+## 📦 Deployment Workflows
 
 This starter project supports multiple deployment strategies depending on your needs:
 
 ### Local Development & Testing
 
-**Use Case**: Testing changes against a sandbox Jamf Pro instance
+**Use Case**: Testing changes against a sandbox Jamf Pro instance with no review or approval workflows
 
 The simplest approach for local testing and development:
 
@@ -553,8 +553,7 @@ terraform apply -parallelism=1
 
 For production deployments, integrate with **HashiCorp Terraform Cloud** (HCP Terraform) using VCS (Version Control System) integration for automated, safe deployments across multiple environments.
 
-> **💰 Pricing Note**: [HCP Terraform](https://developer.hashicorp.com/terraform/cloud-docs) is a paid service with a [free tier](https://developer.hashicorp.com/terraform/cloud-docs/overview#free-organizations) that includes up to 500 resources managed. This is great for evaluating the service and working with a smaller Jamf Pro deployment.
-For larger Jamf Pro deployments, the **Essentials** tier likely provides sufficient resources and features. Evaluate your resource count and team size to determine the appropriate tier.
+> **💰 Pricing Note**: [HCP Terraform](https://developer.hashicorp.com/terraform/cloud-docs) is a paid service with a [free tier](https://developer.hashicorp.com/terraform/cloud-docs/overview#free-organizations) that includes up to 500 resources managed. The free tier is great for evaluating the service and working with a smaller Jamf Pro deployment. Evaluate your resource count and team size to determine the appropriate tier.
 
 #### Environment Strategy
 
@@ -584,12 +583,7 @@ This guide demonstrates a **three-tier approach** (dev → staging → productio
 - **Production**: Live environment
   - Same strict controls as three-tier approach
 
-**Which approach to use?**
-
-- **Three-tier**: Large organizations, critical infrastructure, compliance requirements, multiple stakeholders
-- **Two-tier**: Small teams, faster change velocity, simpler infrastructure, fewer compliance requirements
-
-> **Note**: The examples below use three tiers, but you can easily adapt by removing the staging environment and creating PRs directly from dev to main.
+> **Note**: The examples below use three tiers, but you can easily adapt by removing the staging environment and creating PRs directly from dev to main branches.
 
 #### Architecture Overview
 
@@ -604,12 +598,12 @@ GitHub Repository (Branches)          HCP Terraform (Workspaces)          Jamf P
     main branch                  → jamf-pretendco-production      →    pretendco.jamfcloud.com
 ```
 
-**🔑 Key Principle**: Dev and staging environments should **mirror production** as closely as possible. They exist to test changes before production deployment, not to maintain different configurations. The only differences should be:
+**🔑 Key Principle**: Dev and staging instances should **mirror production** as closely as possible. They exist to test changes before production deployment, not to maintain different configurations. The only differences should be:
 
-- Credentials/API keys (environment-specific)
-- ADE and VPP tokens (environment-specific)
-- Instance URLs (environment-specific)
-- Changes currently under review (temporary differences in dev/staging branches)
+- Credentials/API keys (unique and instance-specific)
+- ADE and VPP tokens (unique and instance-specific)
+- Instance URLs (unique and instance-specific)
+- Changes currently under review (temporary differences in dev/staging instances)
 
 **Why this matters**:
 
@@ -641,6 +635,28 @@ GitHub Repository (Branches)          HCP Terraform (Workspaces)          Jamf P
 ##### 2. Configure Branch Strategy
 
 Create branches for each environment:
+
+**Option A: [GitHub Desktop](<https://docs.github.com/en/desktop/making-changes-in-a-branch/managing-branches-in-github-desktop>** (Recommended for beginners)
+
+1. Open GitHub Desktop and ensure your repository is selected
+2. Click the **Current Branch** dropdown at the top
+3. Ensure you're on the `main` branch
+4. Click **Fetch origin** to ensure `main` is up to date
+5. Click **New Branch** button
+6. Name the branch `dev` and ensure it's based on `main`
+7. Click **Create Branch**
+8. Click **Publish branch** to push it to GitHub
+9. Repeat steps 3-8 to create a `staging` branch (also based on `main`)
+
+**Option B: [GitHub Web Interface](<https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository>**
+
+1. Navigate to your repository on GitHub.com
+2. Ensure you're viewing the `main` branch (check the branch dropdown)
+3. Click the branch dropdown and type `dev` in the text field
+4. Click **Create branch: dev from 'main'**
+5. Repeat steps 2-4 to create a `staging` branch from `main`
+
+**Option C: Command Line**
 
 ```bash
 # Start by ensuring main branch is up to date (represents production state)
