@@ -787,6 +787,7 @@ You'll need **three separate rulesets** (one per branch) since each requires dif
        - ✅ Require branches to be up to date before merging
        - **Add Status checks that are required**:
          - `terraform-checks` (from GitHub Actions workflow)
+         - `branch-promotion-check` (from GitHub Actions workflow)
          - `Terraform Cloud/your-org-name/jamf-yourcompany-staging` (value will be specific from your Terraform Cloud instance)
 
 **Production/Main Branch Ruleset**:
@@ -805,6 +806,7 @@ You'll need **three separate rulesets** (one per branch) since each requires dif
        - ✅ Require branches to be up to date before merging
        - **Add Status checks that are required**:
          - `terraform-checks` (from GitHub Actions workflow)
+         - `branch-promotion-check` (from GitHub Actions workflow)
          - `Terraform Cloud/your-org-name/jamf-yourcompany-production` (value will be specific from your Terraform Cloud instance)
 
 > **💡 Note**: The Terraform Cloud status checks will appear in the list after your first PR triggers a speculative plan. You may need to create an initial PR to each branch, let it run, then add the status check requirement retroactively.
