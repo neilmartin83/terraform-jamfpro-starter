@@ -12,21 +12,12 @@ data "itunessearchapi_content" "jamf_self_service" {
   app_store_urls = [local.jamf_self_service_app_store_url]
 }
 
-resource "local_file" "jamf_self_service_icon" {
-  for_each = {
-    for idx, result in data.itunessearchapi_content.jamf_self_service.results : result.track_id => result
-    if result.artwork_base64 != null
-  }
-  content_base64 = each.value.artwork_base64
-  filename       = "${path.module}/.icons/${each.value.track_id}/512x512bb.png"
-}
-
 resource "jamfpro_icon" "jamf_self_service" {
   for_each = {
     for idx, result in data.itunessearchapi_content.jamf_self_service.results : result.track_id => result
-    if result.artwork_base64 != null
+    if result.artwork_url != null
   }
-  icon_file_path = local_file.jamf_self_service_icon[each.key].filename
+  icon_file_web_source = each.value.artwork_url
 }
 
 resource "jamfpro_mobile_device_application" "jamf_self_service" {
