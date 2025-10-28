@@ -18,21 +18,12 @@ data "itunessearchapi_content" "microsoft_office_apps" {
   app_store_urls = local.microsoft_office_app_store_urls
 }
 
-resource "local_file" "microsoft_office_icon" {
-  for_each = {
-    for idx, result in data.itunessearchapi_content.microsoft_office_apps.results : result.track_id => result
-    if result.artwork_base64 != null
-  }
-  content_base64 = each.value.artwork_base64
-  filename       = "${path.module}/.icons/${each.value.track_id}/512x512bb.png"
-}
-
 resource "jamfpro_icon" "microsoft_office" {
   for_each = {
     for idx, result in data.itunessearchapi_content.microsoft_office_apps.results : result.track_id => result
-    if result.artwork_base64 != null
+    if result.artwork_url != null
   }
-  icon_file_path = local_file.microsoft_office_icon[each.key].filename
+  icon_file_web_source = each.value.artwork_url
 }
 
 resource "jamfpro_mobile_device_application" "microsoft_office" {
