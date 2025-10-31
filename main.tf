@@ -47,6 +47,13 @@ module "app_installers" {
   computer_smart_group_model_ids = module.computer_smart_groups.model_ids
 }
 
+module "mac_apps" {
+  source                          = "./modules/mac-apps"
+  category_ids                    = module.settings.category_ids
+  building_ids                    = module.settings.building_ids
+  volume_purchasing_location_data = local.volume_purchasing_location_data
+}
+
 module "policies" {
   source                         = "./modules/policies"
   category_ids                   = module.settings.category_ids
@@ -73,6 +80,7 @@ module "mobile_device_profiles" {
 module "mobile_device_apps" {
   source                          = "./modules/mobile-device-apps"
   category_ids                    = module.settings.category_ids
+  department_ids                  = module.settings.department_ids
   volume_purchasing_location_data = local.volume_purchasing_location_data
 }
 
