@@ -10,7 +10,7 @@ resource "jamfpro_computer_inventory_collection_settings" "default" {
     include_printers                                   = true
     include_services                                   = true
     collect_synced_mobile_device_info                  = false
-    update_ldap_info_on_computer_inventory_submissions = true
+    update_ldap_info_on_computer_inventory_submissions = false
     monitor_beacons                                    = false
     allow_changing_user_and_location                   = true
     use_unix_user_paths                                = true

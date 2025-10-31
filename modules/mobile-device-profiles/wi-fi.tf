@@ -14,7 +14,7 @@ resource "jamfpro_mobile_device_configuration_profile_plist" "wifi" {
   redeploy_on_update = "Newly Assigned"
   payloads           = local.wifi_mobileconfig_content
   payload_validate   = false
-  category_id        = var.category_ids["Global (Managed by Terraform)"]
+  category_id        = var.category_ids["global"]
   scope {
     all_mobile_devices = true
   }

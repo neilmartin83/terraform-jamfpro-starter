@@ -1,9 +1,11 @@
 locals {
   architecture_types = {
-    "Apple Silicon" = {
+    apple_silicon = {
+      name = "Architecture - Apple Silicon (Managed by Terraform)"
       arch = "arm64"
     },
-    "Intel" = {
+    intel = {
+      name = "Architecture - Intel (Managed by Terraform)"
       arch = "x86_64"
     }
   }
@@ -11,7 +13,7 @@ locals {
 
 resource "jamfpro_smart_computer_group" "architecture" {
   for_each = local.architecture_types
-  name     = "Architecture - ${each.key}"
+  name     = each.value.name
   criteria {
     name        = "Architecture Type"
     priority    = 0

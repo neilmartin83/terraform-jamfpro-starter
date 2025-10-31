@@ -18,6 +18,6 @@ resource "jamfplatform_cbengine_benchmark" "cis_lvl2_all" {
       enabled = r.enabled
     }
   ]
-  target_device_group = data.jamfpro_group.computer_smart_group_models["Laptops"].group_platform_id
+  target_device_group = data.jamfpro_group.computer_smart_group_models["laptops"].group_platform_id
   enforcement_mode    = "MONITOR"
 }

@@ -4,7 +4,7 @@ resource "jamfpro_mobile_device_configuration_profile_plist" "lock_screen_1_1" {
   level              = "Device Level"
   deployment_method  = "Install Automatically"
   redeploy_on_update = "Newly Assigned"
-  category_id        = var.category_ids["Global (Managed by Terraform)"]
+  category_id        = var.category_ids["global"]
   payloads           = file("${path.module}/support-files/lock-screen-message.mobileconfig")
   scope {
     all_mobile_devices = true

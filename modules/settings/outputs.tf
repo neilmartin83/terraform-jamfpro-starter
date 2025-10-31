@@ -1,3 +1,13 @@
+output "building_ids" {
+  description = "The IDs of the common Jamf Pro buildings created."
+  value       = { for k, r in jamfpro_building.common : k => r.id }
+}
+
+output "department_ids" {
+  description = "The IDs of the common Jamf Pro departments created."
+  value       = { for k, r in jamfpro_department.department : k => r.id }
+}
+
 output "category_ids" {
   description = "The IDs of the common Jamf Pro categories created."
   value       = { for k, r in jamfpro_category.common : k => r.id }

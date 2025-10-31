@@ -29,7 +29,7 @@ resource "jamfpro_mobile_device_application" "jamf_self_service" {
   bundle_id                              = each.value.bundle_id
   version                                = each.value.version
   internal_app                           = false
-  category_id                            = var.category_ids["Applications (Managed by Terraform)"]
+  category_id                            = var.category_ids["applications"]
   site_id                                = -1
   itunes_store_url                       = each.value.track_view_url
   external_url                           = each.value.track_view_url

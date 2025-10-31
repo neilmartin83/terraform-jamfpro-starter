@@ -30,12 +30,12 @@ resource "jamfpro_policy" "install_nudge" {
   enabled         = true
   trigger_checkin = true
   frequency       = "Ongoing"
-  category_id     = var.category_ids["Applications (Managed by Terraform)"]
+  category_id     = var.category_ids["applications"]
   scope {
     all_computers = false
     computer_group_ids = [
-      var.computer_smart_group_model_ids["Desktops"],
-      var.computer_smart_group_model_ids["Laptops"],
+      var.computer_smart_group_model_ids["desktops"],
+      var.computer_smart_group_model_ids["laptops"],
     ]
     exclusions {
       computer_group_ids = [jamfpro_smart_computer_group.nudge_is_installed.id]
@@ -45,7 +45,7 @@ resource "jamfpro_policy" "install_nudge" {
     packages {
       distribution_point = "default"
       package {
-        id     = var.package_ids["nudge-essentials-2.0.12.81807.pkg"]
+        id     = var.package_ids["nudge"]
         action = "Install"
       }
     }

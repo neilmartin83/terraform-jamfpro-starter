@@ -1,24 +1,24 @@
 locals {
-  microsoft_office_apps = {
-    "Microsoft Word 365"       = { name = "Microsoft Word 365" }
-    "Microsoft Excel 365"      = { name = "Microsoft Excel 365" }
-    "Microsoft PowerPoint 365" = { name = "Microsoft PowerPoint 365" }
-    "Microsoft Outlook 365"    = { name = "Microsoft Outlook 365" }
-    "Microsoft OneNote 365"    = { name = "Microsoft OneNote 365" }
-    "Microsoft Teams"          = { name = "Microsoft Teams" }
+  microsoft_office_app_names = {
+    "word"       = "Microsoft Word 365"
+    "excel"      = "Microsoft Excel 365"
+    "powerpoint" = "Microsoft PowerPoint 365"
+    "outlook"    = "Microsoft Outlook 365"
+    "onenote"    = "Microsoft OneNote 365"
+    "teams"      = "Microsoft Teams"
   }
 }
 
 resource "jamfpro_app_installer" "microsoft_office" {
-  for_each                           = local.microsoft_office_apps
-  app_title_name                     = each.value.name
-  name                               = each.value.name
+  for_each                           = local.microsoft_office_app_names
+  app_title_name                     = each.value
+  name                               = each.value
   enabled                            = true
   deployment_type                    = "SELF_SERVICE"
   update_behavior                    = "AUTOMATIC"
-  category_id                        = var.category_ids["Applications (Managed by Terraform)"]
+  category_id                        = var.category_ids["applications"]
   site_id                            = "-1"
-  smart_group_id                     = var.computer_smart_group_model_ids["Laptops"]
+  smart_group_id                     = var.computer_smart_group_model_ids["laptops"]
   install_predefined_config_profiles = true
   trigger_admin_notifications        = false
   notification_settings {

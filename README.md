@@ -238,11 +238,11 @@ Each module contains resource files that can be customized:
    resource "jamfpro_policy" "install_microsoft_teams" {
      name     = "Install Microsoft Teams"
      enabled  = true
-     category_id = var.category_ids["Applications (Managed by Terraform)"]
+     category_id = var.category_ids["applications"]
      
      scope {
        computer_group_ids = [
-         var.computer_smart_group_model_ids["Laptops"]
+         var.computer_smart_group_model_ids["laptops"]
        ]
      }
      

@@ -1,11 +1,11 @@
 locals {
-  microsoft_office_app_store_urls = [
-    "https://apps.apple.com/gb/app/microsoft-excel/id586683407",
-    "https://apps.apple.com/gb/app/microsoft-powerpoint/id586449534",
-    "https://apps.apple.com/gb/app/microsoft-word/id586447913",
-    "https://apps.apple.com/gb/app/microsoft-outlook/id951937596",
-    "https://apps.apple.com/gb/app/microsoft-teams/id1113153706"
-  ]
+  microsoft_office_app_store_urls = {
+    excel      = "https://apps.apple.com/gb/app/microsoft-excel/id586683407",
+    powerpoint = "https://apps.apple.com/gb/app/microsoft-powerpoint/id586449534",
+    word       = "https://apps.apple.com/gb/app/microsoft-word/id586447913",
+    outlook    = "https://apps.apple.com/gb/app/microsoft-outlook/id951937596",
+    teams      = "https://apps.apple.com/gb/app/microsoft-teams/id1113153706"
+  }
   microsoft_office_vpp_status = {
     for result in data.itunessearchapi_content.microsoft_office_apps.results : result.track_id => {
       has_licenses         = contains(local.vpp_adam_ids, tostring(result.track_id))
@@ -15,7 +15,7 @@ locals {
 }
 
 data "itunessearchapi_content" "microsoft_office_apps" {
-  app_store_urls = local.microsoft_office_app_store_urls
+  app_store_urls = values(local.microsoft_office_app_store_urls)
 }
 
 resource "jamfpro_icon" "microsoft_office" {
@@ -36,7 +36,7 @@ resource "jamfpro_mobile_device_application" "microsoft_office" {
   bundle_id                              = each.value.bundle_id
   version                                = each.value.version
   internal_app                           = false
-  category_id                            = var.category_ids["Applications (Managed by Terraform)"]
+  category_id                            = var.category_ids["applications"]
   site_id                                = -1
   itunes_store_url                       = each.value.track_view_url
   external_url                           = each.value.track_view_url

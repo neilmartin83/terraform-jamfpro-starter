@@ -1,12 +1,12 @@
 locals {
-  category_names = [
-    "Global (Managed by Terraform)",
-    "Applications (Managed by Terraform)",
-    "Scripts (Managed by Terraform)"
-  ]
+  category_names = {
+    global       = "Global (Managed by Terraform)",
+    applications = "Applications (Managed by Terraform)",
+    scripts      = "Scripts (Managed by Terraform)"
+  }
 }
 
 resource "jamfpro_category" "common" {
-  for_each = toset(local.category_names)
-  name     = each.key
+  for_each = local.category_names
+  name     = each.value
 }

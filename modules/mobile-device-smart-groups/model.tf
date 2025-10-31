@@ -1,9 +1,11 @@
 locals {
   models = {
-    "iPhones" = {
+    iphones = {
+      name  = "Model - iPhones (Managed by Terraform)"
       model = "iPhone"
     }
-    "iPads" = {
+    ipads = {
+      name  = "Model - iPads (Managed by Terraform)"
       model = "iPad"
     }
   }
@@ -12,7 +14,7 @@ locals {
 
 resource "jamfpro_smart_mobile_device_group" "model" {
   for_each = local.models
-  name     = "All Managed ${each.key} (Managed by Terraform)"
+  name     = each.value.name
   criteria {
     name        = "Model"
     priority    = 0

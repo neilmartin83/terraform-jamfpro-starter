@@ -9,16 +9,16 @@ terraform {
 }
 
 locals {
-  package_names = [
-    "nudge-essentials-2.0.12.81807.pkg"
-  ]
+  package_names = {
+    nudge = "nudge-essentials-2.0.12.81807.pkg"
+  }
 }
 
 resource "jamfpro_package" "default" {
-  for_each              = toset(local.package_names)
+  for_each              = local.package_names
   package_name          = each.value
   package_file_source   = "${path.module}/support-files/${each.value}"
-  category_id           = var.category_ids["Applications (Managed by Terraform)"]
+  category_id           = var.category_ids["applications"]
   info                  = "Managed by Terraform"
   priority              = 10
   reboot_required       = false
