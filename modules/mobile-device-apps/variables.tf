@@ -3,6 +3,11 @@ variable "category_ids" {
   type        = map(string)
 }
 
+variable "department_ids" {
+  description = "Map of department IDs"
+  type        = map(string)
+}
+
 variable "volume_purchasing_location_data" {
   description = "Volume Purchasing Location data from VPP locations module"
   type = object({
