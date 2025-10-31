@@ -10,7 +10,7 @@ This starter project provides a fully-functional Jamf Pro configuration using Te
 - **Computer Management**: PreStages, smart groups, configuration profiles, policies, and packages
 - **Mobile Device Management**: PreStages, smart groups, configuration profiles, and apps
 - **Security & Compliance**: CIS benchmarks and Jamf Pro Blueprints
-- **App Distribution**: App Installers and Mobile Device Apps (VPP)
+- **App Distribution**: App Installers, Mac App Store Apps (VPP) and Mobile Device Apps (VPP)
 
 ## 📋 Prerequisites
 
@@ -163,7 +163,9 @@ terraform-jamfpro-starter/
 │
 └── modules/                         # Modular organization
     ├── settings/                    # Core Jamf Pro settings
+    │   ├── buildings.tf
     │   ├── categories.tf
+    │   ├── departments.tf
     │   ├── automated-device-enrollment.tf
     │   ├── volume-purchasing-locations.tf
     │   ├── computer-checkin.tf
@@ -178,6 +180,7 @@ terraform-jamfpro-starter/
     ├── packages/                    # Packages (.pkg files)
     ├── policies/                    # Policies
     ├── app-installers/              # App Installers (Jamf App Catalogue)
+    ├── mac-apps/                    # Mac App Store apps (VPP)
     │
     ├── mobile-device-prestages/     # Mobile device PreStage enrollments
     ├── mobile-device-smart-groups/  # Mobile device smart groups
