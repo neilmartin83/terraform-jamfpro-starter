@@ -8,13 +8,11 @@ resource "jamfpro_macos_configuration_profile_plist" "nudge" {
   payload_validate    = true
   user_removable      = false
   category_id         = var.category_ids["applications"]
-
   scope {
     all_computers = false
     all_jss_users = false
     computer_group_ids = [
-      var.computer_smart_group_model_ids["laptops"],
-      var.computer_smart_group_model_ids["desktops"]
+      var.computer_smart_group_ids["laptops"]
     ]
   }
 }

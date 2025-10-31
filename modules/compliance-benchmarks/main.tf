@@ -12,8 +12,8 @@ terraform {
   }
 }
 
-data "jamfpro_group" "computer_smart_group_models" {
-  for_each         = var.computer_smart_group_model_ids
+data "jamfpro_group" "computer_smart_groups" {
+  for_each         = var.computer_smart_group_ids
   group_jamfpro_id = each.value
   group_type       = "COMPUTER"
 }

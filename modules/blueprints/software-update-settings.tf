@@ -3,8 +3,8 @@ resource "jamfplatform_blueprints_blueprint" "software_update_settings" {
   description = "Managed by Terraform"
 
   device_groups = concat(
-    [for group in data.jamfpro_group.computer_smart_group_models : group.group_platform_id],
-    [for group in data.jamfpro_group.mobile_device_smart_group_models : group.group_platform_id]
+    [data.jamfpro_group.computer_smart_groups["all_managed"].group_platform_id],
+    [data.jamfpro_group.mobile_device_smart_groups["all_managed"].group_platform_id]
   )
 
   software_update_settings {

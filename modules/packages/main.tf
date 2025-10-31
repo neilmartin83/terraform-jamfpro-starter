@@ -10,7 +10,8 @@ terraform {
 
 locals {
   package_names = {
-    nudge = "nudge-essentials-2.0.12.81807.pkg"
+    microsoft_company_portal = "microsoft-company-portal-5.2508.1.pkg"
+    nudge                    = "nudge-essentials-2.0.12.81807.pkg"
   }
 }
 

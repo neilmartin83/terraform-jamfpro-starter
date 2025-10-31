@@ -1,13 +1,3 @@
-terraform {
-  required_version = ">= 1.10.6"
-  required_providers {
-    jamfpro = {
-      source  = "deploymenttheory/jamfpro"
-      version = "0.27.0"
-    }
-  }
-}
-
 resource "jamfpro_smart_computer_group" "nudge_is_installed" {
   name = "Nudge Is Installed (Managed by Terraform)"
   criteria {
@@ -34,8 +24,7 @@ resource "jamfpro_policy" "install_nudge" {
   scope {
     all_computers = false
     computer_group_ids = [
-      var.computer_smart_group_model_ids["desktops"],
-      var.computer_smart_group_model_ids["laptops"],
+      var.computer_smart_group_ids["laptops"]
     ]
     exclusions {
       computer_group_ids = [jamfpro_smart_computer_group.nudge_is_installed.id]

@@ -8,11 +8,10 @@ resource "jamfpro_macos_configuration_profile_plist" "security_and_privacy_lapto
   payload_validate    = true
   user_removable      = false
   category_id         = var.category_ids["global"]
-
   scope {
     all_computers      = false
     all_jss_users      = false
-    computer_group_ids = [var.computer_smart_group_model_ids["laptops"]]
+    computer_group_ids = [var.computer_smart_group_ids["laptops"]]
   }
 }
 
@@ -26,10 +25,9 @@ resource "jamfpro_macos_configuration_profile_plist" "security_and_privacy_deskt
   payload_validate    = true
   user_removable      = false
   category_id         = var.category_ids["global"]
-
   scope {
     all_computers      = false
     all_jss_users      = false
-    computer_group_ids = [var.computer_smart_group_model_ids["desktops"]]
+    computer_group_ids = [var.computer_smart_group_ids["desktops"]]
   }
 }

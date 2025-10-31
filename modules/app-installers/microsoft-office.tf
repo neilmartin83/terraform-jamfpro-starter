@@ -18,7 +18,7 @@ resource "jamfpro_app_installer" "microsoft_office" {
   update_behavior                    = "AUTOMATIC"
   category_id                        = var.category_ids["applications"]
   site_id                            = "-1"
-  smart_group_id                     = var.computer_smart_group_model_ids["laptops"]
+  smart_group_id                     = var.computer_smart_group_ids["laptops"]
   install_predefined_config_profiles = true
   trigger_admin_notifications        = false
   notification_settings {

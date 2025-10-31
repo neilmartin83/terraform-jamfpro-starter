@@ -8,7 +8,7 @@ locals {
 }
 
 resource "jamfpro_mobile_device_configuration_profile_plist" "wifi" {
-  name               = "Wi-Fi - ${local.wifi_ssid}"
+  name               = "Wi-Fi - ${local.wifi_ssid} (Managed by Terraform)"
   level              = "Device Level"
   deployment_method  = "Install Automatically"
   redeploy_on_update = "Newly Assigned"
