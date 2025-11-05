@@ -264,7 +264,7 @@ Each module contains resource files that can be customized:
 1. Create a new file in `modules/computer-smart-groups/`:
 
    ```hcl
-   # modules/computer-smart-groups/filevault_enabled.tf
+   # modules/computer-smart-groups/filevault-enabled.tf
    resource "jamfpro_smart_computer_group" "filevault_enabled" {
      name = "FileVault 2 Is Enabled (Managed by Terraform)"
      criteria {
