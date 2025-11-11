@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-blueprints-configuration-guide/page/Jamf_Pro_Blueprints_Configuration_Guide.html
+
 resource "jamfplatform_blueprints_blueprint" "software_update" {
   name        = "Software Updates - Set and Forget - All Managed Computers and Mobile Devices"
   description = "Managed by Terraform"

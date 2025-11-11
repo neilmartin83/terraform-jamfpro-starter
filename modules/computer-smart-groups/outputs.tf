@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Smart_Groups.html
+
 output "group_ids" {
   description = "Map of smart group key -> jamf smart group id (Custom groups)"
   value = merge(

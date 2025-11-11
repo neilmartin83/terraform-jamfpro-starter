@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Policies.html
+
 resource "jamfpro_smart_computer_group" "nudge_is_installed" {
   name = "Nudge Is Installed (Managed by Terraform)"
   criteria {

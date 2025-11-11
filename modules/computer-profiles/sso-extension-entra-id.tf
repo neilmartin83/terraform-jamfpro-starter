@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Computer_Configuration_Profiles.html
+
 resource "jamfpro_macos_configuration_profile_plist" "sso_extension_entra_id" {
   name                = "Single Sign-On Extension - Entra ID (Managed by Terraform)"
   description         = ""

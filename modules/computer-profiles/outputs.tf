@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Computer_Configuration_Profiles.html
+
 output "profile_ids" {
   description = "The IDs of the Jamf Pro computer profiles created."
   value = {

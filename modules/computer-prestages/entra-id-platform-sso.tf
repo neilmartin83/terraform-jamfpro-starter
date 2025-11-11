@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Automated_Device_Enrollment_for_Computers.html
+
 resource "jamfpro_computer_prestage_enrollment" "entra_id_psso" {
   display_name                          = "Entra ID Platform SSO (Managed by Terraform)"
   mandatory                             = true

@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Automated_Device_Enrollment_for_Computers.html
+
 resource "jamfpro_computer_prestage_enrollment" "generic" {
   display_name                            = "Generic (Managed by Terraform)"
   mandatory                               = true

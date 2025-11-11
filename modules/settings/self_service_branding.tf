@@ -1,3 +1,6 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Jamf_Self_Service_for_iOS_Branding_Settings.html
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Jamf_Self_Service_for_macOS_Branding_Settings.html
+
 resource "jamfpro_self_service_branding_image" "icon" {
   self_service_branding_image_file_path = "${path.module}/support-files/self-service-branding-icon.png"
 }

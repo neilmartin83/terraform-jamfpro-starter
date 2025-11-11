@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/MDM_Profile_Settings.html
+
 resource "jamfpro_device_communication_settings" "example" {
   auto_renew_mobile_device_mdm_profile_when_ca_renewed                    = true
   auto_renew_mobile_device_mdm_profile_when_device_identity_cert_expiring = true

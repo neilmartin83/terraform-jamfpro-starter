@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Categories.html
+
 locals {
   category_names = {
     global       = "Global (Managed by Terraform)",

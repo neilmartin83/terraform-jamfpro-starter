@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Volume_Purchasing_Integration.html
+
 resource "jamfpro_volume_purchasing_locations" "default" {
   count                                     = var.volume_purchasing_service_token != null ? 1 : 0
   name                                      = "Volume Purchasing Location (Managed by Terraform)"

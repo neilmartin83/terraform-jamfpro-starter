@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Buildings_and_Departments.html
+
 locals {
   buildings = {
     north = "North Wing (Managed by Terraform)",

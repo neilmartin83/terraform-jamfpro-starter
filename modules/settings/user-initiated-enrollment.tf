@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/User-Initiated_Enrollment_Settings.html
+
 resource "jamfpro_user_initiated_enrollment_settings" "default" {
   restrict_reenrollment_to_authorized_users_only  = false
   skip_certificate_installation_during_enrollment = true

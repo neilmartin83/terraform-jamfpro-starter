@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Mobile_Device_Configuration_Profiles.html
+
 locals {
   wifi_ssid     = "Pretend Co Wi-Fi"
   wifi_password = "SuperSecretPassword"

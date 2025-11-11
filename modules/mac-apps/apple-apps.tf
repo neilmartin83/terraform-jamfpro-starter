@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Apps_Purchased_in_Volume.html
+
 locals {
   apple_app_store_urls = {
     keynote    = "https://apps.apple.com/gb/app/keynote/id409183694?mt=12",

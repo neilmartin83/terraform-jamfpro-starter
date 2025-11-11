@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Apps_Purchased_in_Volume.html
+
 locals {
   microsoft_office_app_store_urls = {
     excel      = "https://apps.apple.com/gb/app/microsoft-excel/id586683407",

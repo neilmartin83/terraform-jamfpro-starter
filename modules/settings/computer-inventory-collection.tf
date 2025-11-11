@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Computer_Inventory_Collection_Settings.html
+
 resource "jamfpro_computer_inventory_collection_settings" "default" {
   computer_inventory_collection_preferences {
     monitor_application_usage                          = false

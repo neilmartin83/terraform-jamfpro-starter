@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Computer_Configuration_Profiles.html
+
 resource "jamfpro_macos_configuration_profile_plist" "security_and_privacy_laptops" {
   name                = "Security and Privacy - Laptops (Managed by Terraform)"
   description         = ""

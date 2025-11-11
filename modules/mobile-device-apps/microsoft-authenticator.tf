@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Apps_Purchased_in_Volume.html
+
 locals {
   microsoft_authenticator_app_store_url = "https://apps.apple.com/gb/app/microsoft-authenticator/id983156458"
   microsoft_authenticator_vpp_status = {

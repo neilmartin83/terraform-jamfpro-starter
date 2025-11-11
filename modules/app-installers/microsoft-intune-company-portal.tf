@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/App_Installers.html
+
 resource "jamfpro_app_installer" "microsoft_intune_company_portal" {
   app_title_name                     = "Microsoft Intune Company Portal"
   name                               = "Microsoft Intune Company Portal"

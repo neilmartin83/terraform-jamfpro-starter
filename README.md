@@ -7,6 +7,7 @@ A comprehensive, almost production-ready Terraform configuration for managing a 
 This starter project provides a fully-functional Jamf Pro configuration using Terraform, covering:
 
 - **Core Settings**: Categories, enrollment, inventory collection, LAPS, ADE & VPP token support and more
+- **Device Enrollment**: Automated Device Enrollment and [Access Management](https://support.apple.com/en-gb/guide/apple-business-manager/axm53xk34bq/web) integration with Apple Business/School Manager
 - **Computer Management**: PreStages, smart groups, configuration profiles, policies, and packages
 - **Mobile Device Management**: PreStages, smart groups, configuration profiles, and apps
 - **Security & Compliance**: CIS benchmarks and Jamf Pro Blueprints

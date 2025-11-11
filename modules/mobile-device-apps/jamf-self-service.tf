@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Apps_Purchased_in_Volume.html
+
 locals {
   jamf_self_service_app_store_url = "https://apps.apple.com/gb/app/jamf-self-service/id718509958"
   jamf_self_service_vpp_status = {

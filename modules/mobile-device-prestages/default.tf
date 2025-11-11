@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Automated_Device_Enrollment_for_Mobile_Devices.html
+
 resource "jamfpro_mobile_device_prestage_enrollment" "_1_1" {
   display_name                                 = "Default (Managed by Terraform)"
   mandatory                                    = true

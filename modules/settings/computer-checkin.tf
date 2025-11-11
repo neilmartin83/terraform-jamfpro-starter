@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Building_the_Framework_for_Managing_Computers.html
+
 resource "jamfpro_client_checkin" "default" {
   check_in_frequency                  = 15
   create_startup_script               = true

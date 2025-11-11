@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/App_Installers.html
+
 locals {
   microsoft_office_app_names = {
     "word"       = "Microsoft Word 365"

@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Mobile_Device_Configuration_Profiles.html
+
 resource "jamfpro_mobile_device_configuration_profile_plist" "sso_extention_entra_id" {
   name               = "Single Sign-On Extension - Entra ID (Managed by Terraform)"
   description        = "terraform-jamfpro-starter/modules/mobile-device-profiles/sso-extention-entra-id.tf"

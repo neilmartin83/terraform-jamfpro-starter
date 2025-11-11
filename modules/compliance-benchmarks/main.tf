@@ -1,3 +1,5 @@
+# https://learn.jamf.com/en-US/bundle/jamf-compliance-benchmarks-configuration-guide/page/Compliance_Benchmarks_Configuration_Guide.html
+
 terraform {
   required_version = ">= 1.10.6"
   required_providers {
