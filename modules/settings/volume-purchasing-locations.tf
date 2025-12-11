@@ -14,12 +14,19 @@ resource "jamfpro_volume_purchasing_locations" "default" {
 
 resource "time_sleep" "wait_2_minutes" {
   count           = var.volume_purchasing_service_token != null ? 1 : 0
-  depends_on      = [jamfpro_volume_purchasing_locations.default[0]]
   create_duration = "2m"
+  triggers = {
+    vpp_location_id = one(jamfpro_volume_purchasing_locations.default[*].id)
+  }
 }
 
 data "jamfpro_volume_purchasing_locations" "default" {
-  count      = var.volume_purchasing_service_token != null ? 1 : 0
-  id         = jamfpro_volume_purchasing_locations.default[0].id
-  depends_on = [time_sleep.wait_2_minutes[0]]
+  count = var.volume_purchasing_service_token != null ? 1 : 0
+  id    = one(jamfpro_volume_purchasing_locations.default[*].id)
+  lifecycle {
+    postcondition {
+      condition     = one(time_sleep.wait_2_minutes[*].id) != null
+      error_message = "Volume purchasing location sync did not complete."
+    }
+  }
 }

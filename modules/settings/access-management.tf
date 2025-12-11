@@ -2,5 +2,5 @@
 
 resource "jamfpro_access_management_settings" "default" {
   count                                   = var.automated_device_enrollment_token != null ? 1 : 0
-  automated_device_enrollment_server_uuid = jamfpro_device_enrollments.default[0].server_uuid
+  automated_device_enrollment_server_uuid = one(jamfpro_device_enrollments.default[*].server_uuid)
 }

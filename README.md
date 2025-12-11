@@ -370,10 +370,10 @@ This project demonstrates a variety of suggested practices that are used in Infr
 2. **Safe Output Access**
 
    ```hcl
-   value = length(resource.name) > 0 ? resource.name[0].id : null
+   value = one(resource.name[*].id)
    ```
 
-   E.g. in `settings/outputs.tf` - The ADE ID from Jamf Pro value is set to null if an ADE is not created (i.e. no token supplied)
+   E.g. in `settings/outputs.tf` - Uses the `one()` function to safely extract values from resources created with `count`. Returns the single element if exactly one exists, returns `null` if the list is empty, or errors if multiple elements exist (preventing silent failures from incorrect resource counts)
 
 3. **Template Rendering**
 
@@ -383,13 +383,15 @@ This project demonstrates a variety of suggested practices that are used in Infr
 
    E.g. in `mobile-device-profiles/wi-fi.tf` - the SSID and password are substituted into the configuration profile payload from local values
 
-4. **Resource Dependencies**
+4. **Implicit Resource Dependencies**
 
    ```hcl
-   depends_on = [module.other]
+   triggers = {
+     resource_id = one(other_resource[*].id)
+   }
    ```
 
-   E.g. in `settings/volume-purchasing-locations.tf` - to allow time for licenses to sync from Apple Business/School Manager before reading them into Terraform, a delay of 2 minutes (`time_sleep` resource) is created after the Volume Purchasing Location, before licenses are read by the data source
+   E.g. in `settings/volume-purchasing-locations.tf` - to ensure proper resource ordering and allow time for licenses to sync from Apple Business/School Manager, a 2-minute delay (`time_sleep` resource) is triggered by the Volume Purchasing Location's ID. The data source then uses a lifecycle postcondition to create an implicit dependency on the time_sleep, ensuring resources are created in the correct sequence without explicit `depends_on` statements
 
 ### Module-specific Examples
 
