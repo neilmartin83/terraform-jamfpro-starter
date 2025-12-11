@@ -57,6 +57,7 @@ resource "jamfpro_computer_prestage_enrollment" "generic" {
     wallpaper                   = true
     software_update             = true
     additional_privacy_settings = true
+    os_showcase                 = true
   }
   location_information {
     username      = ""
