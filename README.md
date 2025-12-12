@@ -30,7 +30,7 @@ This starter project provides a fully-functional Jamf Pro configuration using Te
 ### Required Providers
 
 - [`Jamf-Concepts/jamfplatform`](https://registry.terraform.io/providers/Jamf-Concepts/jamfplatform/latest) >= 0.2.0
-- [`deploymenttheory/jamfpro`](https://registry.terraform.io/providers/deploymenttheory/jamfpro/latest) = 0.27.0
+- [`deploymenttheory/jamfpro`](https://registry.terraform.io/providers/deploymenttheory/jamfpro/latest) = 0.30.0
 
 ### API Credentials
 
