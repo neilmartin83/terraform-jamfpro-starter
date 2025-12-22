@@ -2,6 +2,8 @@
 
 A comprehensive, almost production-ready Terraform configuration for managing a complete Jamf Pro instance with an opinionated set of examples. This project demonstrates what the authors consider best practice for Infrastructure as Code (IaC) with Jamf Pro. It can serve as inspiration for your own deployment.
 
+> This resource is provided by the community and is not officially endorsed or supported by Jamf.
+
 ## 🎯 Overview
 
 This starter project provides a fully-functional Jamf Pro configuration using Terraform, covering:
