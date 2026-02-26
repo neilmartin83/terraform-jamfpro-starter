@@ -270,7 +270,7 @@ Each module contains resource files that can be customized:
 
    ```hcl
    # modules/computer-smart-groups/filevault-enabled.tf
-   resource "jamfpro_smart_computer_group" "filevault_enabled" {
+   resource "jamfpro_smart_computer_group_v2" "filevault_enabled" {
      name = "FileVault 2 Is Enabled (Managed by Terraform)"
      criteria {
        name        = "FileVault 2 Enabled"
@@ -289,10 +289,10 @@ Each module contains resource files that can be customized:
      description = "Map of smart group keys to their Jamf Pro IDs"
      value = merge(
        # Existing groups:
-       { for k, g in jamfpro_smart_computer_group.model : k => g.id },
+       { for k, g in jamfpro_smart_computer_group_v2.model : k => g.id },
        ...
        # Add your new group here:
-       { filevault_enabled = jamfpro_smart_computer_group.filevault_enabled.id }
+       { filevault_enabled = jamfpro_smart_computer_group_v2.filevault_enabled.id }
      )
    }
    ```
@@ -461,7 +461,7 @@ resource "jamfpro_policy" "install_microsoft_teams" {
   name = "Install Microsoft Teams (Managed by Terraform)"
 }
 
-resource "jamfpro_smart_computer_group" "filevault_enabled" {
+resource "jamfpro_smart_computer_group_v2" "filevault_enabled" {
   name = "FileVault Is Enabled (Managed by Terraform)"
 }
 
@@ -470,7 +470,7 @@ resource "jamfpro_policy" "InstallMicrosoftTeams" {
   name = "Install Microsoft Teams"
 }
 
-resource "jamfpro_smart_computer_group" "FileVault-enabled" {
+resource "jamfpro_smart_computer_group_v2" "FileVault-enabled" {
   name = "FileVault Is Enabled"
 }
 ```
@@ -511,7 +511,7 @@ variable "jamfpro_instance_fqdn" {
 output "computer_smart_group_ids" {
   description = "Map of computer smart group keys to their Jamf Pro IDs"
   value       = merge(
-    { for k, g in jamfpro_smart_computer_group.model : k => g.id }
+    { for k, g in jamfpro_smart_computer_group_v2.model : k => g.id }
   )
 }
 
@@ -523,7 +523,7 @@ variable "jamfProInstanceFQDN" {
 
 output "csg_ids" {
   value = merge(
-    { for k, g in jamfpro_smart_computer_group.model : k => g.id }
+    { for k, g in jamfpro_smart_computer_group_v2.model : k => g.id }
   )
 }
 ```

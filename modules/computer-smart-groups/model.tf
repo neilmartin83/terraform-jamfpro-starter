@@ -15,7 +15,7 @@ locals {
   }
 }
 
-resource "jamfpro_smart_computer_group" "model" {
+resource "jamfpro_smart_computer_group_v2" "model" {
   for_each = local.models
   name     = each.value.name
   criteria {

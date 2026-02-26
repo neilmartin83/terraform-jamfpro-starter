@@ -5,7 +5,7 @@ data "jamfplatform_cbengine_rules" "cis_lvl1" {
 }
 
 resource "jamfplatform_cbengine_benchmark" "cis_lvl1_all" {
-  title              = "CIS Level 1 - Desktops"
+  title              = "CIS Level 1 - All Desktops"
   description        = "Managed by Terraform"
   source_baseline_id = "cis_lvl1"
   sources = [

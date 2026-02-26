@@ -13,7 +13,7 @@ locals {
   }
 }
 
-resource "jamfpro_smart_computer_group" "architecture" {
+resource "jamfpro_smart_computer_group_v2" "architecture" {
   for_each = local.architecture_types
   name     = each.value.name
   criteria {

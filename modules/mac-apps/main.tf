@@ -5,7 +5,7 @@ terraform {
   required_providers {
     jamfpro = {
       source  = "deploymenttheory/jamfpro"
-      version = "0.30.0"
+      version = "0.35.0"
     }
     itunessearchapi = {
       source  = "neilmartin83/itunessearchapi"

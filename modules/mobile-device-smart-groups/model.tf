@@ -14,7 +14,7 @@ locals {
 }
 
 
-resource "jamfpro_smart_mobile_device_group" "model" {
+resource "jamfpro_smart_mobile_device_group_v1" "model" {
   for_each = local.models
   name     = each.value.name
   criteria {

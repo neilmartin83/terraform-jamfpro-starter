@@ -5,7 +5,7 @@ data "jamfplatform_cbengine_rules" "cis_lvl2" {
 }
 
 resource "jamfplatform_cbengine_benchmark" "cis_lvl2_all" {
-  title              = "CIS Level 2 - Laptops"
+  title              = "CIS Level 2 - All Laptops"
   description        = "Managed by Terraform"
   source_baseline_id = "cis_lvl2"
   sources = [

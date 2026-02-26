@@ -1,6 +1,6 @@
 # https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Policies.html
 
-resource "jamfpro_smart_computer_group" "nudge_is_installed" {
+resource "jamfpro_smart_computer_group_v2" "nudge_is_installed" {
   name = "Nudge Is Installed (Managed by Terraform)"
   criteria {
     name        = "Application Bundle ID"
@@ -29,7 +29,7 @@ resource "jamfpro_policy" "install_nudge" {
       var.computer_smart_group_ids["laptops"]
     ]
     exclusions {
-      computer_group_ids = [jamfpro_smart_computer_group.nudge_is_installed.id]
+      computer_group_ids = [jamfpro_smart_computer_group_v2.nudge_is_installed.id]
     }
   }
   payloads {

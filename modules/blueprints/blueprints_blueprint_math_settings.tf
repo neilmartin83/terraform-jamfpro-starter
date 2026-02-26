@@ -1,0 +1,21 @@
+resource "jamfplatform_blueprints_blueprint" "test_math_settings" {
+  name        = "Terraform Test Math Settings"
+  description = "Managed by Terraform"
+  deployed    = false
+
+  device_groups = concat(
+    [data.jamfpro_group.computer_smart_groups["all_managed"].group_platform_id],
+    [data.jamfpro_group.mobile_device_smart_groups["all_managed"].group_platform_id]
+  )
+
+  math_settings = {
+    calculator_basic_mode_add_square_root  = false
+    calculator_scientific_mode_enabled     = true
+    calculator_programmer_mode_enabled     = false
+    calculator_math_notes_mode_enabled     = true
+    calculator_input_modes_unit_conversion = true
+    calculator_input_modes_rpn             = false
+    system_behavior_keyboard_suggestions   = true
+    system_behavior_math_notes             = true
+  }
+}

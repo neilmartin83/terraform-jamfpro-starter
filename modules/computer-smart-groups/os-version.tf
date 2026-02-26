@@ -20,7 +20,7 @@ locals {
   }
 }
 
-resource "jamfpro_smart_computer_group" "os_version" {
+resource "jamfpro_smart_computer_group_v2" "os_version" {
   for_each = local.os_version_ranges
   name     = each.value.name
   criteria {

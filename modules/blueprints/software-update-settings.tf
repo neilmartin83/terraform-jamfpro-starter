@@ -3,13 +3,14 @@
 resource "jamfplatform_blueprints_blueprint" "software_update_settings" {
   name        = "Software Update Settings"
   description = "Managed by Terraform"
+  deployed    = false
 
   device_groups = concat(
     [data.jamfpro_group.computer_smart_groups["all_managed"].group_platform_id],
     [data.jamfpro_group.mobile_device_smart_groups["all_managed"].group_platform_id]
   )
 
-  software_update_settings {
+  software_update_settings = {
     allow_standard_user_os_updates           = true
     automatic_download                       = "AlwaysOn"
     automatic_install_os_updates             = "AlwaysOn"
