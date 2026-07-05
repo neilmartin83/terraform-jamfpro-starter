@@ -1,8 +1,10 @@
 # Jamf Pro Terraform Starter
 
-A comprehensive, almost production-ready Terraform configuration for managing a complete Jamf Pro instance with an opinionated set of examples. This project demonstrates what the authors consider best practice for Infrastructure as Code (IaC) with Jamf Pro. It can serve as inspiration for your own deployment.
-
-If you are new to Terraform and Infrastructure as Code, begin with [terraform-jamfplatform-examples](https://github.com/neilmartin83/terraform-jamfplatform-examples) to gain a basic understanding of working with individual resources.
+> **⚠️ ARCHIVED — This repository is no longer maintained.**
+>
+> The content here has been superseded by the following resources:
+> - **[terraform-jamf-platform ref-jamfplatform-starter](https://github.com/Jamf-Concepts/terraform-jamf-platform/tree/ref-jamfplatform-starter)** — Starter configuration
+> - **[terraform-jamf-platform ref-jamfplatform](https://github.com/Jamf-Concepts/terraform-jamf-platform/tree/ref-jamfplatform)** — Supporting examples
 
 > This resource is provided by the community and is not officially endorsed or supported by Jamf.
 
